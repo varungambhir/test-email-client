@@ -23,12 +23,20 @@
 			"recvd": "",
 			"read": false,
 			"body": "Hi Peter, How have you been ?"
+		},
+		"0004": {
+			"subject": "test email 4",
+			"from": "Jill",
+			"to": "Sam",
+			"recvd": "",
+			"read": false,
+			"body": "Hi Sam, How have you been ?"
 		}
 	},
 	"inbox": [
 		"0001", "0002"
 	],
 	"sent": [
-		"0003"
+		"0003", "0004"
 	]
 }
