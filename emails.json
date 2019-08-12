@@ -21,7 +21,6 @@
 			"from": "Jack",
 			"to": "Peter",
 			"recvd": "",
-			"read": false,
 			"body": "Hi Peter, How have you been ?"
 		},
 		"0004": {
@@ -29,7 +28,6 @@
 			"from": "Jill",
 			"to": "Sam",
 			"recvd": "",
-			"read": false,
 			"body": "Hi Sam, How have you been ?"
 		}
 	},

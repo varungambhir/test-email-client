@@ -32,13 +32,19 @@ function renderEmails(emails) {
 	listEl.addEventListener('click', event => {
 		const element = event.target;
 		const index = [...element.parentElement.children].indexOf(element);
-		renderEmailBody(emails[index]);
-		markEmailAsRead(index, emails);
+		const email = emails[index];
+		renderEmailBody(email);
+		if (email.read !== undefined) {
+			markEmailAsRead(index, emails);
+		}
 	});
 
 	emails.forEach(email => {
 		const li = document.createElement('li');
-		li.textContent = email.subject + " " + email.read;
+		li.textContent = email.read !== undefined
+			? email.subject + " " + email.read
+			: email.subject;
+
 		listEl.appendChild(li);
 	});
 }
