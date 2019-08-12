@@ -6,35 +6,23 @@ function fetchEmails() {
 		.then(resp => resp.json())
 		.then(data => emailJson = data)
 		.then(() => console.log(emailJson))
-		.then(() => initInbox())
-		.then(() => initSent());
+		.then(() => initItems('inbox', 'inbox__items'))
+		.then(() => initItems('sent', 'sent__items'));
 }
 
-function initInbox() {
-	let inboxEmails = [];
-	emailJson.inbox.forEach(inboxEmailId => {
-		inboxEmails.push(emailJson.emails[inboxEmailId]);
+function initItems(folderName, listElClassName) {
+	let emails = [];
+	emailJson[folderName].forEach(emailId => {
+		emails.push(emailJson.emails[emailId]);
+	});
+	const [ listEl ] = document.getElementsByClassName(listElClassName);
+	listEl.addEventListener('click', event => {
+		console.log('clicked', event);
 	});
 
-	inboxEmails.forEach(inboxEmail => {
-		const [ inboxListEl ] = document.getElementsByClassName('inbox__items');
+	emails.forEach(email => {
 		const li = document.createElement('li');
-		li.textContent = inboxEmail.subject;
-		inboxListEl.appendChild(li);
+		li.textContent = email.subject + " " + email.read;
+		listEl.appendChild(li);
 	});
 }
-
-function initSent() {
-	let sentEmails = [];
-	emailJson.sent.forEach(sentEmailId => {
-		sentEmails.push(emailJson.emails[sentEmailId]);
-	});
-
-	sentEmails.forEach(sentEmail => {
-		const [ sentListEl ] = document.getElementsByClassName('sent__items');
-		const li = document.createElement('li');
-		li.textContent = sentEmail.subject;
-		sentListEl.appendChild(li);
-	});
-}
-
