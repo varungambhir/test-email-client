@@ -31,6 +31,7 @@ function renderEmails(emails) {
 		const element = event.target;
 		const index = [...element.parentElement.children].indexOf(element);
 		renderEmailBody(emails[index]);
+		markEmailAsRead(index, emails);
 	});
 
 	emails.forEach(email => {
@@ -69,5 +70,13 @@ function addNavItemListeners() {
 function clearEmailsIfPresent(listEl) {
 	for (let i = 0; i <= listEl.childElementCount; i++) {
 		listEl.removeChild(listEl.childNodes[0]);
+	}
+}
+
+function markEmailAsRead(index, emails) {
+	const email = emails[index];
+	if (!email.read) {
+		email.read = true;
+		renderEmails(emails);
 	}
 }
