@@ -26,7 +26,9 @@ function initEmails(folderName) {
 function renderEmails(emails, listElClassName) {
 	const [ listEl ] = document.getElementsByClassName(listElClassName);
 	listEl.addEventListener('click', event => {
-		console.log('clicked', event);
+		const element = event.target;
+		const index = [...element.parentElement.children].indexOf(element);
+		renderEmailBody(emails[index]);
 	});
 
 	emails.forEach(email => {
