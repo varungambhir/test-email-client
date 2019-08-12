@@ -1,0 +1,12 @@
+.nav__items {
+	position: fixed;
+	left: 0;
+	background-color: gray;
+	height: 100vw;
+	padding: 16px;
+}
+
+.nav__item {
+	list-style-type: none;
+	padding: 8px;
+}
