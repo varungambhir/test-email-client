@@ -1,6 +1,7 @@
 let emailJson = null;
 let inboxEmails = null;
 let sentEmails = null;
+const localStorageNamespace = 'email-client';
 fetchEmails();
 
 function fetchEmails() {
@@ -11,6 +12,7 @@ function fetchEmails() {
 			inboxEmails = initEmails('inbox');
 			sentEmails = initEmails('sent');
 			addNavItemListeners();
+			fetchPersistedReadStatus();
 			renderEmails(inboxEmails);
 			renderEmailBody(inboxEmails[0]);
 		});
@@ -19,7 +21,7 @@ function fetchEmails() {
 function initEmails(folderName) {
 	let emails = [];
 	emailJson[folderName].forEach(emailId => {
-		emails.push(emailJson.emails[emailId]);
+		emails.push({...emailJson.emails[emailId], id: emailId});
 	});
 	return emails;
 }
@@ -77,6 +79,17 @@ function markEmailAsRead(index, emails) {
 	const email = emails[index];
 	if (!email.read) {
 		email.read = true;
+		window.localStorage.setItem(localStorageNamespace + email.id, true);
 		renderEmails(emails);
 	}
+}
+
+function fetchPersistedReadStatus() {
+	inboxEmails
+		.forEach(inboxEmail => {
+			const persistedEmailReadStatus = window.localStorage.getItem(localStorageNamespace + inboxEmail.id);
+			if (persistedEmailReadStatus) {
+				inboxEmail.read = true;
+			}
+		})
 }
