@@ -13,9 +13,19 @@
 			"to": "Harry",
 			"recvd": "",
 			"read": false
+		},
+		"0003": {
+			"subject": "test email 3",
+			"from": "Jack",
+			"to": "Peter",
+			"recvd": "",
+			"read": false
 		}
 	},
 	"inbox": [
 		"0001", "0002"
+	],
+	"sent": [
+		"0003"
 	]
 }
