@@ -1,0 +1,21 @@
+{
+	"emails": {
+		"0001": {
+			"subject": "test email 1",
+			"from": "John",
+			"to": "Andy",
+			"recvd": "",
+			"read": false
+		},
+		"0002": {
+			"subject": "test email 2",
+			"from": "Fisher",
+			"to": "Harry",
+			"recvd": "",
+			"read": false
+		}
+	},
+	"inbox": [
+		"0001", "0002"
+	]
+}
