@@ -7,13 +7,15 @@ function fetchEmails() {
 	fetch('emails.json')
 		.then(resp => resp.json())
 		.then(data => emailJson = data)
-		.then(() => console.log(emailJson))
-		.then(() => inboxEmails = initItems('inbox'))
-		.then(() => sentEmails = initItems('sent'))
-		.then(() => renderItems(inboxEmails, 'inbox__items'));
+		.then(() => {
+			inboxEmails = initEmails('inbox');
+			sentEmails = initEmails('sent');
+			renderEmails(inboxEmails, 'inbox__items');
+			renderEmailBody(inboxEmails[0]);
+		});
 }
 
-function initItems(folderName) {
+function initEmails(folderName) {
 	let emails = [];
 	emailJson[folderName].forEach(emailId => {
 		emails.push(emailJson.emails[emailId]);
@@ -21,7 +23,7 @@ function initItems(folderName) {
 	return emails;
 }
 
-function renderItems(emails, listElClassName) {
+function renderEmails(emails, listElClassName) {
 	const [ listEl ] = document.getElementsByClassName(listElClassName);
 	listEl.addEventListener('click', event => {
 		console.log('clicked', event);
@@ -32,4 +34,9 @@ function renderItems(emails, listElClassName) {
 		li.textContent = email.subject + " " + email.read;
 		listEl.appendChild(li);
 	});
+}
+
+function renderEmailBody(email) {
+	const [ bodyContainerEl ] = document.getElementsByClassName('container__body');
+	bodyContainerEl.textContent = email.body;
 }

@@ -5,21 +5,24 @@
 			"from": "John",
 			"to": "Andy",
 			"recvd": "",
-			"read": false
+			"read": false,
+			"body": "Hi Andy, How have you been ?"
 		},
 		"0002": {
 			"subject": "test email 2",
 			"from": "Fisher",
 			"to": "Harry",
 			"recvd": "",
-			"read": false
+			"read": false,
+			"body": "Hi Harry, How have you been ?"
 		},
 		"0003": {
 			"subject": "test email 3",
 			"from": "Jack",
 			"to": "Peter",
 			"recvd": "",
-			"read": false
+			"read": false,
+			"body": "Hi Peter, How have you been ?"
 		}
 	},
 	"inbox": [
